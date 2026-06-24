@@ -40,3 +40,43 @@ h1:focus {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
     text-align: start;
 }
+
+.keyboard-surface:focus {
+    outline: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+/* Sidebar background */
+.bright-sidebar {
+    background-color: #0A1A2F !important;
+    width: 90px !important;
+    color: white;
+}
+
+/* Nav items */
+.bright-nav-item {
+    color: white !important;
+    padding: 20px 0 !important;
+    justify-content: center !important;
+    text-align: center;
+    border-radius: 8px;
+    margin: 6px 8px;
+}
+
+/* Icons */
+.bright-nav-item .mud-nav-link-icon {
+    color: white !important;
+    font-size: 28px;
+}
+
+/* Active item highlight */
+.bright-nav-item.mud-nav-link-active {
+    background-color: #1E3A5F !important;
+    border-left: 4px solid #FF4F00;
+    padding-left: 16px !important;
+}
+
+/* Hover */
+.bright-nav-item:hover {
+    background-color: #1E3A5F !important;
+}

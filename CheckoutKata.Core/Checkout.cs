@@ -77,4 +77,16 @@ public class Checkout : ICheckout
         _counts.Clear();
         RecalculateTotal();
     }
+
+    public void RemoveOne(string sku)
+    {
+        if (_scannedItems.Remove(sku))
+        {
+            _counts[sku]--;
+            if (_counts[sku] == 0)
+                _counts.Remove(sku);
+
+            RecalculateTotal();
+        }
+    }
 }

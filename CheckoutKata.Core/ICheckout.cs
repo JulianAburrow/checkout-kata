@@ -11,4 +11,5 @@ public interface ICheckout
     void RemoveLast();
 
     void ClearAll();
+    void RemoveOne(string sku);
 }

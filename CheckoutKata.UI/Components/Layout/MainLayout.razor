@@ -9,21 +9,15 @@
 
 <CascadingValue Value="this">
     <MudLayout>
-        <MudAppBar Elevation="1">
+        <MudAppBar Style="background: linear-gradient(to bottom, #FF4F00 0%, #CC3F00 100%); color: white;" Elevation="4">
             <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
             <MudText Typo="Typo.h5" Class="ml-3">Checkout</MudText>
             <MudSpacer />
-            @* <div style="width: 80%; color: white; font-size: 24px">@HeaderText</div> *@
         </MudAppBar>
-        <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+        <MudDrawer Class="bright-sidebar" @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
             <NavMenu />
         </MudDrawer>
         <MudMainContent>
-            @* <MudBreadcrumbs Items="BreadCrumbs">
-                <SeparatorTemplate>
-                    <MudIcon Icon="@Icons.Material.Filled.ArrowForward" Size="Size.Small" />
-                </SeparatorTemplate>
-            </MudBreadcrumbs> *@
             @Body
         </MudMainContent>
     </MudLayout>

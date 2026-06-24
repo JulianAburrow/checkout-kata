@@ -1,0 +1,37 @@
+﻿@page "/help"
+@inherits BasePageClass
+
+<MudText Typo="Typo.h4" Class="mb-4">Help & Keyboard Shortcuts</MudText>
+
+<MudPaper Class="pa-4">
+
+    <MudText Typo="Typo.h6">Keyboard Shortcuts</MudText>
+    <MudList T="string" Dense="true">
+        <MudListItem>Scan items by pressing their SKU letter on the keyboard.</MudListItem>
+        <MudListItem>Backspace — Remove last scanned item</MudListItem>
+        <MudListItem>Escape — Clear basket</MudListItem>
+    </MudList>
+
+    <MudDivider Class="my-4" />
+
+    <MudText Typo="Typo.h6">Special Offers</MudText>
+        <MudList T="string" Dense="true">
+        @foreach (var sku in SkuCatalogue.Skus.Where(s => s.Offer is not null))
+        {
+            var offer = sku.Offer!;
+
+            <MudListItem>
+                @($"{sku.Code}: {offer.Quantity} for £{offer.Price}")
+            </MudListItem>
+        }
+    </MudList>
+
+    <MudDivider Class="my-4" />
+
+    <MudText Typo="Typo.h6">About</MudText>
+    <MudText>
+        This checkout illustrates item scanning, grouped totals, multi‑buy offers, keyboard shortcuts, and a responsive MudBlazor interface — a compact demonstration of a clean, modern POS flow.
+        Created by Julian Aburrow as a demonstration application.
+    </MudText>
+
+</MudPaper>

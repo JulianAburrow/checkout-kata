@@ -5,12 +5,12 @@
             <MudCard Class="flex-grow-1 d-flex flex-column">
                 <MudCardContent>
                     <MudText Typo="Typo.h5">@sku.Code</MudText>
-                    <MudText>£@sku.Price</MudText>
+                    <MudText>Regular Price: £@sku.Price</MudText>
 
                     @if (sku.Offer is not null)
                     {
                         <MudText Color="Color.Secondary">
-                            @($"{sku.Offer.Quantity} for £{sku.Offer.Price}")
+                            @($"Offer price: {sku.Offer.Quantity} for £{sku.Offer.Price}")
                         </MudText>
                     }
                 </MudCardContent>
@@ -18,7 +18,7 @@
                 <MudCardActions>
                     <MudButton Variant="Variant.Filled" Color="Color.Primary"
                                OnClick="@(() => OnScan.InvokeAsync(sku.Code))">
-                        Scan
+                        Scan <MudChip T="string" Class="ml-2" Color="Color.Secondary" Variant="Variant.Outlined">@sku.Code</MudChip>
                     </MudButton>
                 </MudCardActions>
             </MudCard>

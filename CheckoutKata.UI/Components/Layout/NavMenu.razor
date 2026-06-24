@@ -1,4 +1,13 @@
 ﻿<MudNavMenu>
-    <MudNavLink Href="">Home</MudNavLink>
-    <MudNavLink Href="/checkout">Checkout</MudNavLink>
+    <MudTooltip Text="Home">
+        <MudNavLink Href="/" Icon="@Icons.Material.Filled.Home" Class="bright-nav-item" />
+    </MudTooltip>
+
+    <MudTooltip Text="Checkout">
+        <MudNavLink Href="/checkout" Icon="@Icons.Material.Filled.ShoppingCart" Class="bright-nav-item" />
+    </MudTooltip>
+
+    <MudTooltip Text="Help">
+        <MudNavLink Href="/help" Icon="@Icons.Material.Filled.Help" Class="bright-nav-item" />
+    </MudTooltip>
 </MudNavMenu>

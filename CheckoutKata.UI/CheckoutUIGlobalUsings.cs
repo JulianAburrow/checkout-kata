@@ -2,5 +2,8 @@
 global using CheckoutKata.UI.Components;
 global using CheckoutKata.UI.Extensions;
 global using CheckoutKata.UI.Models;
+global using CheckoutKata.UI.Shared.BasePageClasses;
+global using CheckoutKata.UI.Shared.Skus;
 global using Microsoft.AspNetCore.Components;
+global using Microsoft.AspNetCore.Components.Web;
 global using MudBlazor.Services;
