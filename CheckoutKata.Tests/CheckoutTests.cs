@@ -7,7 +7,7 @@ public class CheckoutTests
     {
         var checkout = new Checkout();
         checkout.Scan("A");
-        Assert.Equal(50, checkout.Total());
+        Assert.Equal(50, checkout.GetTotalPrice());
     }
 
     [Fact]
@@ -16,7 +16,7 @@ public class CheckoutTests
         var checkout = new Checkout();
         checkout.Scan("A");
         checkout.Scan("A");
-        Assert.Equal(100, checkout.Total());
+        Assert.Equal(100, checkout.GetTotalPrice());
     }
 
     [Fact]
@@ -24,7 +24,7 @@ public class CheckoutTests
     {
         var checkout = new Checkout();
         checkout.Scan("B");
-        Assert.Equal(30, checkout.Total());
+        Assert.Equal(30, checkout.GetTotalPrice());
     }
 
     [Fact]
@@ -32,7 +32,7 @@ public class CheckoutTests
     {
         var checkout = new Checkout();
         checkout.Scan("C");
-        Assert.Equal(20, checkout.Total());
+        Assert.Equal(20, checkout.GetTotalPrice());
     }
 
     [Fact]
@@ -40,7 +40,7 @@ public class CheckoutTests
     {
         var checkout = new Checkout();
         checkout.Scan("D");
-        Assert.Equal(15, checkout.Total());
+        Assert.Equal(15, checkout.GetTotalPrice());
     }
 
     [Fact]
@@ -50,7 +50,7 @@ public class CheckoutTests
         checkout.Scan("A");
         checkout.Scan("A");
         checkout.Scan("A");
-        Assert.Equal(130, checkout.Total());
+        Assert.Equal(130, checkout.GetTotalPrice());
     }
 
     [Fact]
@@ -59,7 +59,7 @@ public class CheckoutTests
         var checkout = new Checkout();
         checkout.Scan("B");
         checkout.Scan("B");
-        Assert.Equal(45, checkout.Total());
+        Assert.Equal(45, checkout.GetTotalPrice());
     }
 
     [Fact]
@@ -68,7 +68,7 @@ public class CheckoutTests
         var checkout = new Checkout();
         checkout.Scan("A");
         checkout.Scan("B");
-        Assert.Equal(80, checkout.Total());
+        Assert.Equal(80, checkout.GetTotalPrice());
     }
 
     [Fact]
@@ -78,7 +78,7 @@ public class CheckoutTests
         checkout.Scan("A");
         checkout.Scan("B");
         checkout.Scan("A");
-        Assert.Equal(130, checkout.Total());
+        Assert.Equal(130, checkout.GetTotalPrice());
     }
     [Fact]
     public void Scanning_multiple_As_and_Bs_returns_correct_amount()
@@ -90,6 +90,33 @@ public class CheckoutTests
         checkout.Scan("A");
         checkout.Scan("B");
         checkout.Scan("A");
-        Assert.Equal(225, checkout.Total());
+        Assert.Equal(225, checkout.GetTotalPrice());
+    }
+
+    [Fact]
+    public void Order_does_not_affect_total()
+    {
+        var checkout1 = new Checkout();
+        checkout1.Scan("A");
+        checkout1.Scan("B");
+        checkout1.Scan("A");
+
+        var checkout2 = new Checkout();
+        checkout2.Scan("A");
+        checkout2.Scan("A");
+        checkout2.Scan("B");
+
+        Assert.Equal(checkout1.GetTotalPrice(), checkout2.GetTotalPrice());
+    }
+
+    [Fact]
+    public void Large_basket_calculates_correctly()
+    {
+        var checkout = new Checkout();
+
+        for (int i = 0; i < 10; i++)
+            checkout.Scan("A"); // 3-for-130 applied 3 times + 1 extra
+
+        Assert.Equal(130 * 3 + 50, checkout.GetTotalPrice());
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace CheckoutKata.Core;
 
-public class Checkout
+public class Checkout : ICheckout
 {
     private int _total = 0;
 
@@ -45,5 +45,5 @@ public class Checkout
         }
     }
 
-    public int Total() => _total;
+    public int GetTotalPrice() => _total;
 }
