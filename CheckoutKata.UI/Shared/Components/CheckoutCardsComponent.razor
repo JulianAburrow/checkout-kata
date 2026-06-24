@@ -1,0 +1,27 @@
+﻿<MudGrid>
+    @foreach (var sku in Skus)
+    {
+        <MudItem xs="12" sm="6" md="3" Class="d-flex">
+            <MudCard Class="flex-grow-1 d-flex flex-column">
+                <MudCardContent>
+                    <MudText Typo="Typo.h5">@sku.Code</MudText>
+                    <MudText>£@sku.Price</MudText>
+
+                    @if (sku.Offer is not null)
+                    {
+                        <MudText Color="Color.Secondary">
+                            @($"{sku.Offer.Quantity} for £{sku.Offer.Price}")
+                        </MudText>
+                    }
+                </MudCardContent>
+
+                <MudCardActions>
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary"
+                               OnClick="@(() => OnScan.InvokeAsync(sku.Code))">
+                        Scan
+                    </MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    }
+</MudGrid>
