@@ -4,6 +4,8 @@ public partial class CheckoutPage
 {
     [Inject] private ICheckout Checkout { get; set; } = null!;
 
+    private ElementReference focusTarget;
+
     private Dictionary<string, int> GroupedItems =>
         Checkout.ScannedItems
             .GroupBy(x => x)
@@ -11,18 +13,10 @@ public partial class CheckoutPage
 
     private int Total;
 
-    private readonly List<SkuCard> Skus =
-    [
-        new("A", 50, new SkuOffer(3, 130)),
-        new("B", 30, new SkuOffer(2, 45)),
-        new("C", 20, null),
-        new("D", 15, null)
-    ];
-
-    void Scan(string code)
+    private void Scan(string code)
     {
         Checkout.Scan(code);
-        Total = Checkout.GetTotalPrice();
+        GetTotal();
     }
 
     private void RemoveLast()
@@ -30,13 +24,53 @@ public partial class CheckoutPage
         if (Checkout.ScannedItems.Count > 0)
         {
             Checkout.RemoveLast();
-            Total = Checkout.GetTotalPrice();
+            GetTotal();
         }
     }
 
     private void ClearAll()
     {
         Checkout.ClearAll();
-        Total = Checkout.GetTotalPrice();
+        GetTotal();
     }
+
+    private async Task HandleKey(KeyboardEventArgs e)
+    {
+        var key = e.Key.ToUpperInvariant();
+
+        if (SkuCatalogue.Skus.Any(s => s.Code == key))
+        {
+            Scan(key);
+            return;
+        }
+
+        if (key == "BACKSPACE")
+        {
+            RemoveLast();
+            return;
+        }
+
+        if (key == "ESCAPE")
+        {
+            ClearAll();
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+            return;
+
+        await focusTarget.FocusAsync();
+    }
+
+    private void Increment(string sku) => Scan(sku);
+
+    private void Decrement(string sku)
+    {
+        Checkout.RemoveOne(sku);
+        GetTotal();
+    }
+
+    private void GetTotal() => Total = Checkout.GetTotalPrice();
 }
