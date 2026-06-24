@@ -1,10 +1,10 @@
-using CheckoutKata.UI.Components;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+builder.Services.AddMudServices();
+builder.Services.AddDependencies();
 
 var app = builder.Build();
 

@@ -12,15 +12,21 @@ public class Checkout : ICheckout
         ["D"] = new PricingRule(15),
     };
 
-    private readonly Dictionary<string, int> _counts = new();
+    public readonly Dictionary<string, int> _counts = [];
 
-    public void Scan(string sku)
+    private readonly List<string> _scannedItems = [];
+
+    public IReadOnlyList<string> ScannedItems => _scannedItems;
+
+    public void Scan(string item)
     {
-        if (!_counts.ContainsKey(sku)) {
-            _counts[sku] = 0;
+        _scannedItems.Add(item);
+
+        if (!_counts.ContainsKey(item)) {
+            _counts[item] = 0;
         }
 
-        _counts[sku]++;
+        _counts[item]++;
 
         RecalculateTotal();
     }
@@ -46,4 +52,29 @@ public class Checkout : ICheckout
     }
 
     public int GetTotalPrice() => _total;
+
+    public void RemoveLast()
+    {
+        if (_scannedItems.Count == 0)
+            return;
+
+        var last = _scannedItems[^1];
+        _scannedItems.RemoveAt(_scannedItems.Count - 1);
+
+        // decrement count
+        _counts[last]--;
+
+        // if count hits zero, remove the key entirely
+        if (_counts[last] == 0)
+            _counts.Remove(last);
+
+        RecalculateTotal();
+    }
+
+    public void ClearAll()
+    {
+        _scannedItems.Clear();
+        _counts.Clear();
+        RecalculateTotal();
+    }
 }
