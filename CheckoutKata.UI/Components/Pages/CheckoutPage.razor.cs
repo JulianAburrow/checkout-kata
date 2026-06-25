@@ -11,7 +11,7 @@ public partial class CheckoutPage
             .GroupBy(x => x)
             .ToDictionary(g => g.Key, g => g.Count());
 
-    private int Total;
+    private decimal Total;
 
     private void Scan(string code)
     {
