@@ -1,3 +1,5 @@
+[![Run Tests](https://github.com/julian/checkout-kata/actions/workflows/tests.yml/badge.svg)](https://github.com/julian/checkout-kata/actions/workflows/tests.yml)
+
 # Checkout Kata
 
 An implementation of the classic supermarket checkout kata.
