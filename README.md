@@ -1,10 +1,10 @@
-[![Build checkout-kata](https://github.com/JulianAburrow/checkout-kata/actions/workflows/build.yml/badge.svg)](https://github.com/JulianAburrow/checkout-kata/actions/workflows/build.yml)
+[![Run Tests](https://github.com/JulianAburrow/checkout-kata/actions/workflows/tests.yml/badge.svg)](https://github.com/JulianAburrow/checkout-kata/actions/workflows/tests.yml)
 
 # Checkout Kata
 
 An implementation of the classic supermarket checkout kata.
 
-The goal is to build a checkout system that:
+The goal is to have a checkout system that:
 - scans SKUs (A, B, C, D)
 - applies unit pricing
 - applies special offers (e.g., 3 for 130 on A, 2 for 45 on B)
