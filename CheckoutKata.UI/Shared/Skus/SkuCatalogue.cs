@@ -7,11 +7,18 @@ public interface ISkuCatalogue
 
 public class SkuCatalogue : ISkuCatalogue
 {
-    public IReadOnlyList<SkuCard> Skus { get; } =
-    [
-        new("A", 50, new SkuOffer(3, 130)),
-        new("B", 30, new SkuOffer(2, 45)),
-        new("C", 20, null),
-        new("D", 15, null)
-    ];
+    public IReadOnlyList<SkuCard> Skus { get; }
+
+    public SkuCatalogue(IReadOnlyDictionary<string, PricingRule> rules)
+    {
+        Skus = rules.Select(r =>
+            new SkuCard(
+                r.Key,
+                r.Value.UnitPrice,
+                r.Value.OfferQuantity > 0
+                    ? new SkuOffer(r.Value.OfferQuantity, r.Value.OfferPrice)
+                    : null
+            )
+        ).ToList();
+    }
 }

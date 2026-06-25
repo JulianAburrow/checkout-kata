@@ -1,16 +1,8 @@
 ﻿namespace CheckoutKata.Core;
 
-public class Checkout : ICheckout
+public class Checkout(IReadOnlyDictionary<string, PricingRule> rules) : ICheckout
 {
     private int _total = 0;
-
-    private readonly Dictionary<string, PricingRule> _rules = new()
-    {
-        ["A"] = new PricingRule(50, 3, 130),
-        ["B"] = new PricingRule(30, 2, 45),
-        ["C"] = new PricingRule(20),
-        ["D"] = new PricingRule(15),
-    };
 
     public readonly Dictionary<string, int> _counts = [];
 
@@ -37,7 +29,7 @@ public class Checkout : ICheckout
 
         foreach (var (sku, count) in _counts)
         {
-            var rule = _rules[sku];
+            var rule = rules[sku];
 
             if (rule.OfferQuantity > 0)
             {
@@ -51,7 +43,7 @@ public class Checkout : ICheckout
         }
     }
 
-    public int GetTotalPrice() => _total;
+    public decimal GetTotalPrice() => _total;
 
     public void RemoveLast()
     {
