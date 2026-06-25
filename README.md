@@ -1,4 +1,4 @@
-[![Run Tests](https://github.com/julian/checkout-kata/actions/workflows/tests.yml/badge.svg)](https://github.com/julian/checkout-kata/actions/workflows/tests.yml)
+[![Run Tests](https://github.com/julian/checkout-kata/actions/workflows/tests.yml/badge.svg)](https://github.com/julian/checkout-kata/actions/workflows/tests.yml/badge.svg)
 
 # Checkout Kata
 
