@@ -9,7 +9,6 @@
      @onkeydown="HandleKey"
      @onkeydown:preventDefault="true">
 
-
     <MudText Typo="Typo.h3">Checkout</MudText>
 
     <CheckoutCardsComponent Skus="@SkuCatalogue.Skus" OnScan="@Scan" />
@@ -45,12 +44,14 @@
                                                OnClick="@(() => Increment(kvp.Key))" />
                             </MudTooltip>
 
+                            <MudText Color="Color.Secondary">
+                                £@GetSubtotal(kvp.Key, kvp.Value)
+                            </MudText>
+
                         </MudStack>
                     </MudListItem>
-
                 }
             </MudList>
-
         }
 
         <MudCollapse Expanded="Checkout.ScannedItems.Count > 0">

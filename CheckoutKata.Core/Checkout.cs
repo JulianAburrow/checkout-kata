@@ -2,7 +2,7 @@
 
 public class Checkout(IReadOnlyDictionary<string, PricingRule> rules) : ICheckout
 {
-    private int _total = 0;
+    private decimal _total = 0;
 
     public readonly Dictionary<string, int> _counts = [];
 

@@ -73,4 +73,15 @@ public partial class CheckoutPage
     }
 
     private void GetTotal() => Total = Checkout.GetTotalPrice();
+
+    private decimal GetSubtotal(string sku, int quantity)
+    {
+        // Clone a temporary checkout instance
+        var temp = new Checkout(SkuCatalogue.PricingRules);
+
+        for (int i = 0; i < quantity; i++)
+            temp.Scan(sku);
+
+        return temp.GetTotalPrice();
+    }
 }

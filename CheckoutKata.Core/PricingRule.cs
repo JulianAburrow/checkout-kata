@@ -1,10 +1,10 @@
 ﻿namespace CheckoutKata.Core;
 
-public class PricingRule(int unitPrice, int offerQuantity = 0, int offerPrice = 0)
+public class PricingRule(decimal unitPrice, int offerQuantity = 0, decimal offerPrice = 0)
 {
-    public int UnitPrice { get; } = unitPrice;
+    public decimal UnitPrice { get; } = unitPrice;
 
     public int OfferQuantity { get; } = offerQuantity;
 
-    public int OfferPrice { get; } = offerPrice;
+    public decimal OfferPrice { get; } = offerPrice;
 }
