@@ -15,8 +15,19 @@ public partial class CheckoutPage
 
     private void Scan(string code)
     {
-        Checkout.Scan(code);
-        GetTotal();
+        if (string.IsNullOrWhiteSpace(code))
+            return;
+
+        try
+        {
+            Checkout.Scan(code);
+            GetTotal();
+        }
+        catch (Exception ex)
+        {
+            // TODO: log error (ex.Message)
+            // For kata purposes, swallow or surface a simple message
+        }
     }
 
     private void RemoveLast()

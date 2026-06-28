@@ -5,3 +5,5 @@ obj/
 *.suo
 *.cache
 *.db
+/CheckoutKata.UI/Properties/PublishProfiles
+/CheckoutKata.UI/dotnet-tools.json
